@@ -1,0 +1,30 @@
+bool balancedPara(String input) {
+  List<String> stack = [];
+
+  for (int i = 0; i < input.length; i++) {
+    if (input[i] == '(') {
+      stack.add('(');
+    } else if (input[i] == ')') {
+      if (stack.isEmpty || stack.last != '(') {
+        return false; 
+      }
+      stack.removeLast(); 
+    }
+  }
+
+  return stack.isEmpty; 
+}
+
+void main() {
+  String str1 = "((())))"; // Unbalanced parentheses
+  String str2 = "(()))"; // Unbalanced parentheses
+  String str3 = "((())"; // Unbalanced parentheses
+  String str4 = "((()))"; // balanced parentheses
+  String str5 = "((())())"; //balanced brackets / parentheses
+  print(balancedPara(str1)); // balanced therefore true
+  print(balancedPara(str2)); // no balanced therefore false
+  print(balancedPara(str3)); // no balanced therefore false
+  print(balancedPara(str4)); // balanced therefore true
+  print(balancedPara(str5)); // balanced therefore true
+}
+// I USED DARTPAD TO RUN THE CODE
