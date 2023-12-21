@@ -1,0 +1,49 @@
+class Node {
+  dynamic data;
+  Node? next;
+
+  Node(this.data);
+}
+
+// Linked List class here manages the linked list operations
+class LinkedList {
+  Node? header;
+//add new node at first of the list
+  void insert(dynamic data) {
+    Node newNode = Node(data);
+    newNode.next = header;
+    header = newNode;
+  }
+//here i created a method to find middle node
+  Node? middleNode() {
+    if (header == null || header?.next == null) {
+      return header;
+    }
+
+    Node? pointerone = header;
+    Node? pointertwo = header;
+
+    while (pointertwo != null && pointertwo.next != null) {
+      pointerone = pointerone?.next;
+      pointertwo = pointertwo.next?.next;
+    }
+
+    return pointerone;
+  }
+}
+
+void main() {
+  LinkedList list = LinkedList();
+  list.insert(10);
+  list.insert(20);
+  list.insert(30);
+  list.insert(40);
+  list.insert(50);
+
+  Node? middleNode = list.middleNode();
+  if (middleNode != null) {
+    print(' the node that is in the middle is..... ${middleNode.data}');
+  } else {
+    print(' no middle node..... ');
+  }
+}
