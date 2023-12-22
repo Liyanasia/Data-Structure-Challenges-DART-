@@ -1,0 +1,60 @@
+class Node {
+  dynamic data;
+  Node? next;
+
+  Node(this.data);
+}
+
+class LinkedList {
+  Node? head;
+
+  void insert(dynamic data) {
+    Node newNode = Node(data);
+    newNode.next = head;
+    head = newNode;
+  }
+
+  void reverseList() {
+    Node? prev = null;
+    Node? current = head;
+    Node? nextNode;
+
+    while (current != null) {
+      nextNode = current.next; // Store next node
+      current.next = prev; // Reverse the pointer
+      prev = current;
+      current = nextNode;
+    }
+
+    head = prev; // Update the head to the last node (new first node)
+  }
+
+  void printList() {
+    Node? temp = head;
+    while (temp != null) {
+      if (temp.next != null) {
+        print(temp.data.toString() + '  ');
+      } else {
+        print(temp.data);
+      }
+      temp = temp.next;
+    }
+  }
+}
+
+void main() {
+  LinkedList list = LinkedList();
+  list.insert(1);
+  list.insert(2);
+  list.insert(3);
+  list.insert(4);
+  list.insert(5);
+
+  print('Original Linked List:');
+  list.printList();
+
+  print('\nReversed Linked List:');
+  list.reverseList();
+  list.printList();
+}
+
